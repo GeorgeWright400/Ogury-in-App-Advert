@@ -10,16 +10,16 @@ export default class FullheightIframe extends Component {
             showIframe: this.props.showIframe
         }
     }
-    componentDidUpdate(prevProps, prevState) {
-        if (prevProps.showIframe !== this.props.showIframe) {
-          this.setState({showIframe: this.props.showIframe})
-        }
-        if (prevState.showIframe !== this.state.showIframe) {
-            const obj = ReactDOM.findDOMNode(this);
-            this.setState({
-                "iFrameHeight":  obj.contentWindow.document.body.scrollHeight + 'px'
-            });
-      }}
+    // componentDidUpdate(prevProps, prevState) {
+    //     if (prevProps.showIframe !== this.props.showIframe) {
+    //       this.setState({showIframe: this.props.showIframe})
+    //     }
+    //     if (prevState.showIframe !== this.state.showIframe) {
+    //         const obj = ReactDOM.findDOMNode(this);
+    //         this.setState({
+    //             "iFrameHeight":  obj.contentWindow.document.body.scrollHeight + 'px'
+    //         });
+    //   }}
 
     render() {
         return (
@@ -28,6 +28,7 @@ export default class FullheightIframe extends Component {
                 onLoad={() => {
                     const obj = ReactDOM.findDOMNode(this);
                     this.setState({
+                        // "iFrameHeight":  10000 + 'px'
                         "iFrameHeight":  obj.contentWindow.document.body.scrollHeight + 'px'
                     });
                 }}
@@ -40,6 +41,7 @@ export default class FullheightIframe extends Component {
                 frameBorder="0"
                 id={this.props.id}
             />
+            
         );
     }
 }
