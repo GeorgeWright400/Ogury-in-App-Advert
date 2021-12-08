@@ -9,8 +9,8 @@ export default function CachePageContainer() {
     }
     return (
         <div>
-             <button onClick ={handleButtonClick}>show Iframe</button>
-             {showIframe ?  <FullheightIframe id="1921Adidas" showIframe = {showIframe} URL="https://content.lumen-research.com/cachepages/1921.html" /> : "" }
+             <button onClick ={handleButtonClick}>Show Iframe</button>
+             {showIframe ?  <FullheightIframe id="1921Adidas" showIframe = {showIframe} URL="https://content.lumen-research.com/cachepages/OguryApp/1921.html" /> : "" }
         </div>
     )
 }

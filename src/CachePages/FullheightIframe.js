@@ -6,7 +6,7 @@ export default class FullheightIframe extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            iFrameHeight: '0px',
+            iFrameHeight: '100px',
             showIframe: this.props.showIframe
         }
     }
@@ -24,7 +24,7 @@ export default class FullheightIframe extends Component {
     render() {
         return (
             <iframe 
-                style={{ width:'100%', height:this.state.iFrameHeight, overflow:'visible', display: this.state.showIframe ? "block": "none"}}
+                style={{ width:'100%',  overflow:'visible', display: this.state.showIframe ? "block": "none"}}
                 onLoad={() => {
                     const obj = ReactDOM.findDOMNode(this);
                     this.setState({
