@@ -4,8 +4,8 @@ import InAppAdContainer from './InAppAdContainer'
 
 export default function CachePageContainer() {
     const [showIframe, setshowIframe] = React.useState(0)
-    const [cachePageA, setcachePageA] = React.useState("https://content.lumen-research.com/cachepages/OguryApp/1921.html")
-    const [cachePageB, setcachePageB] = React.useState("https://content.lumen-research.com/cachepages/OguryApp/1927.html")
+    const [cachePageA, setcachePageA] = React.useState("https://content.lumen-research.com/cachepages/1921.html")
+    const [cachePageB, setcachePageB] = React.useState("https://content.lumen-research.com/cachepages/1927.html")
 
     const [videoSrc, setvideoSrc] = React.useState("https://content.lumen-research.com/cache_page_data/OguryMicrosoftAds/MSFT_Thumbnail.mp4")
     const [topImage, settopImage] = React.useState("https://content.lumen-research.com/cache_page_data/OguryMicrosoftAds/01_Top.jpeg")
