@@ -14,13 +14,27 @@ export default function CachePageContainer() {
     const [companyName, setcompanyName] = React.useState("Microsoft")
     const [loaded, setLoaded] = React.useState(false)
 
-
-
     function handleButtonClick() {
         if (showIframe < 1) {
             setshowIframe(showIframe +1)
         }
     }
+
+    document.addEventListener("LRIsReady", () => {
+        setLoaded(true);
+        window.LRRegisterCustomEndHandler(() => {
+            handleButtonClick();
+            window.postMessage(
+                {
+                  type: 'LS_EXT_NAVIGATE',
+                  url: window.location.href,
+                },
+                window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : ''),
+              );
+            window.LRRegisterCustomEndHandler(window.LRhandleStepEnd)
+        })
+    })
+
     useEffect(() => {
         let parameter = new URLSearchParams(window.location.search)
         let URLCachePageId = parseInt(parameter.get("cache_page_id"))
@@ -33,7 +47,9 @@ export default function CachePageContainer() {
             setbottomImage("https://content.lumen-research.com/cache_page_data/OguryAdidasAd/Bottom+Adidas+Skin.jpeg")
             setadLogo("https://content.lumen-research.com/cache_page_data/OguryAdidasAd/Top+Adidas+Skin.jpeg")
             setcompanyName("Adidas")
-            setLoaded(true)
+            if (!parameter.get("session_id")) {
+                setLoaded(true)
+            }
         }
         else if (URLCachePageId === 1925) {
             setcachePageA("https://content.lumen-research.com/cachepages/1925.html")
@@ -44,10 +60,14 @@ export default function CachePageContainer() {
             setbottomImage("https://content.lumen-research.com/cache_page_data/OguryMicrosoftAds/02_Bottom.jpeg")
             setadLogo("https://content.lumen-research.com/cache_page_data/OguryMicrosoftAds/MircrosoftLogo.png")
             setcompanyName("Microsoft")
-            setLoaded(true)
+            if (!parameter.get("session_id")) {
+                setLoaded(true)
+            }
         }
         else {
-            setLoaded(true)
+            if (!parameter.get("session_id")) {
+                setLoaded(true)
+            }
         }
         return () => {
             setLoaded(false)

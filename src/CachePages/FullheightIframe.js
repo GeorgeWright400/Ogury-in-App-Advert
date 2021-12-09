@@ -30,8 +30,7 @@ export default class FullheightIframe extends Component {
                 onLoad={() => {
                     const obj = ReactDOM.findDOMNode(this);
                     this.setState({
-                        // "iFrameHeight":  10000 + 'px'
-                        "iFrameHeight":  obj.contentWindow.document.body.scrollHeight + 'px'
+                        "iFrameHeight": obj.src.slice(0,34) == window.location.origin ? obj.contentWindow.document.body.scrollHeight + 'px' : 10000 + 'px'
                     });
                 }}
                 title = {this.props.id}
