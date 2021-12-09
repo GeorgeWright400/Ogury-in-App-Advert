@@ -78,7 +78,7 @@ export default class InAppAdContainer extends Component {
             return ""
         }
         return (
-            <div>
+            <div style={{zIndex:2147483647}} >
                 <Draggable onDrag={this.onControlledDrag} ref={this.draggingContainer} position={this.state.controlledPosition} on bounds="body" disabled={this.state.fullScreen} cancel=".noDrag" >
 
                     {!this.state.deleted ? <div style={{ position: "fixed", bottom: this.state.fullScreen ? 0 : 8, right: this.state.fullScreen ? 0 : 16, zIndex: 4 }}>
