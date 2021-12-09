@@ -25,8 +25,8 @@ export default function CachePageContainer() {
         let parameter = new URLSearchParams(window.location.search)
         let URLCachePageId = parseInt(parameter.get("cache_page_id"))
         if (URLCachePageId === 1921) {
-            setcachePageA("https://content.lumen-research.com/cachepages/OguryApp/1921.html")
-            setcachePageB("https://content.lumen-research.com/cachepages/OguryApp/1927.html")
+            setcachePageA("https://content.lumen-research.com/cachepages/1921.html")
+            setcachePageB("https://content.lumen-research.com/cachepages/1927.html")
         
             setvideoSrc("https://content.lumen-research.com/cache_page_data/OguryAdidasAd/Adidas_Thumbnail.mp4")
             settopImage("https://content.lumen-research.com/cache_page_data/OguryAdidasAd/Top+Adidas+Skin.jpeg")
@@ -37,9 +37,8 @@ export default function CachePageContainer() {
         }
         else if (URLCachePageId === 1925) {
             setcachePageA("https://content.lumen-research.com/cachepages/1925.html")
-            setcachePageB("https://content.lumen-research.com/cachepages/OguryApp/1927.html")
+            setcachePageB("https://content.lumen-research.com/cachepages/1927.html")
         
-
             setvideoSrc("https://content.lumen-research.com/cache_page_data/OguryMicrosoftAds/MSFT_Thumbnail.mp4")
             settopImage("https://content.lumen-research.com/cache_page_data/OguryMicrosoftAds/01_Top.jpeg")
             setbottomImage("https://content.lumen-research.com/cache_page_data/OguryMicrosoftAds/02_Bottom.jpeg")
@@ -56,7 +55,6 @@ export default function CachePageContainer() {
     }, [])
     return (
         <div>
-            
              {showIframe === 0 ?  <FullheightIframe id="test" showIframe URL={cachePageA} /> : "" }
              {showIframe === 1 ?  <FullheightIframe id="clutter" showIframe URL={cachePageB} /> : "" }
             {loaded ?  < InAppAdContainer videoSrc = {videoSrc} topImage = {topImage} bottomImage = {bottomImage} adLogo = {adLogo} companyName = {companyName} /> : "" }
