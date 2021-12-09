@@ -28,22 +28,23 @@ export default function CachePageContainer() {
             setcachePageA("https://content.lumen-research.com/cachepages/OguryApp/1921.html")
             setcachePageB("https://content.lumen-research.com/cachepages/OguryApp/1927.html")
         
-            setvideoSrc("https://content.lumen-research.com/cache_page_data/OguryMicrosoftAds/MSFT_Thumbnail.mp4")
-            settopImage("https://content.lumen-research.com/cache_page_data/OguryMicrosoftAds/01_Top.jpeg")
-            setbottomImage("https://content.lumen-research.com/cache_page_data/OguryMicrosoftAds/02_Bottom.jpeg")
-            setadLogo("https://content.lumen-research.com/cache_page_data/OguryMicrosoftAds/MircrosoftLogo.png")
-            setcompanyName("Microsoft")
+            setvideoSrc("https://content.lumen-research.com/cache_page_data/OguryAdidasAd/Adidas_Thumbnail.mp4")
+            settopImage("https://content.lumen-research.com/cache_page_data/OguryAdidasAd/Top+Adidas+Skin.jpeg")
+            setbottomImage("https://content.lumen-research.com/cache_page_data/OguryAdidasAd/Bottom+Adidas+Skin.jpeg")
+            setadLogo("https://content.lumen-research.com/cache_page_data/OguryAdidasAd/Top+Adidas+Skin.jpeg")
+            setcompanyName("Adidas")
             setLoaded(true)
         }
         else if (URLCachePageId === 1925) {
             setcachePageA("https://content.lumen-research.com/cachepages/1925.html")
             setcachePageB("https://content.lumen-research.com/cachepages/OguryApp/1927.html")
         
-            setvideoSrc("https://content.lumen-research.com/cache_page_data/OguryAdidasAd/Adidas_Thumbnail.mp4")
-            settopImage("https://content.lumen-research.com/cache_page_data/OguryAdidasAd/Top+Adidas+Skin.jpeg")
-            setbottomImage("https://content.lumen-research.com/cache_page_data/OguryAdidasAd/Bottom+Adidas+Skin.jpeg")
-            setadLogo("https://content.lumen-research.com/cache_page_data/OguryAdidasAd/Top+Adidas+Skin.jpeg")
-            setcompanyName("Adidas")
+
+            setvideoSrc("https://content.lumen-research.com/cache_page_data/OguryMicrosoftAds/MSFT_Thumbnail.mp4")
+            settopImage("https://content.lumen-research.com/cache_page_data/OguryMicrosoftAds/01_Top.jpeg")
+            setbottomImage("https://content.lumen-research.com/cache_page_data/OguryMicrosoftAds/02_Bottom.jpeg")
+            setadLogo("https://content.lumen-research.com/cache_page_data/OguryMicrosoftAds/MircrosoftLogo.png")
+            setcompanyName("Microsoft")
             setLoaded(true)
         }
         else {
