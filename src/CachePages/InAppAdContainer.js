@@ -140,7 +140,7 @@ export default class InAppAdContainer extends Component {
                                     src={this.state.muted ? "https://content.lumen-research.com/cache_page_data/OguryMicrosoftAds/volume-off-indicator.png" : "https://content.lumen-research.com/cache_page_data/OguryMicrosoftAds/volume.png"} />
                             </div>
                             <video
-                                // onEnded={this.deleteVideo} 
+                                onEnded={this.deleteVideo} 
                                 onTimeUpdate={this.updateVideoProgress} src={this.props.videoSrc} style={{ width: "100%", height: "auto" }} nocontrols autoPlay playsInline
                                 muted={this.state.muted} >
                             </video>
