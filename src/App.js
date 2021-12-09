@@ -1,10 +1,9 @@
-import logo from './logo.svg';
 import './App.css';
 import CachePageContainer from './CachePages/CachePageContainer';
 
 function App() {
   return (
-    <div className="App">
+    <div style={{width:"100vw"}} className="App">
      <CachePageContainer />
     </div>
   );
