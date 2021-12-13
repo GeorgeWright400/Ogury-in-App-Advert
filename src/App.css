@@ -30,3 +30,19 @@
   *, ::after, ::before {
     box-sizing: unset !important;
   }
+  #next-button {
+    box-sizing: border-box !important
+  }
+  #study-header .header-container {
+    box-sizing: border-box !important
+  }
+  .center-block {
+    box-sizing: border-box !important
+  }
+  #study-header {
+    box-sizing: border-box !important
+  }
+  #next-spinner {
+    box-sizing: border-box !important
+  }
+
