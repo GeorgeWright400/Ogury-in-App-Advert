@@ -21,6 +21,7 @@ export default class InAppAdContainer extends Component {
 
         }
         this.draggingContainer = React.createRef();
+        this.video = React.createRef();
     }
     componentDidMount() {
         this.setState({ fullScreenHeightWithAddressBar: window.innerHeight })
@@ -36,7 +37,13 @@ export default class InAppAdContainer extends Component {
             this.setState({ savedControlledPosition: { x: dragger.state.x, y: dragger.state.y } });
             this.setState({ controlledPosition: { x: 0, y: 0 } });
         }
-        this.setState({ "fullScreen": !this.state.fullScreen })
+        this.setState({ "fullScreen": !this.state.fullScreen });
+        if (!!this.video.current) {
+            let LRCustomEvent = new CustomEvent("LRCustomViewability");
+            setTimeout(() => {
+                this.video.current.dispatchEvent(LRCustomEvent);
+            }, 1000);
+        }
     }
 
     onControlledDrag = (e, position) => {
@@ -78,11 +85,11 @@ export default class InAppAdContainer extends Component {
             return ""
         }
         return (
-            <div style={{zIndex:2147483647}} >
+            <div style={{zIndex:2147483647, position: "relative"}} >
                 <Draggable onDrag={this.onControlledDrag} ref={this.draggingContainer} position={this.state.controlledPosition} on bounds="body" disabled={this.state.fullScreen} cancel=".noDrag" >
 
                     {!this.state.deleted ? <div style={{ position: "fixed", bottom: this.state.fullScreen ? 0 : 8, right: this.state.fullScreen ? 0 : 16, zIndex: 4 }}>
-                        <div style={{ display: "flex", justifyContent: "space-evenly", width: this.state.fullScreen ? "100vw" : 200, height: this.state.fullScreen ? this.state.fullScreenHeightWithAddressBar : 113, position: "fixed", bottom: this.state.fullScreen ? 0 : 66, right: this.state.fullScreen ? 0 : 16, flexDirection: "column", transition: "width 500ms, height 300ms", transitionTimingFunction: "ease-out" }}>
+                        <div id="ultimateContainer" style={{ display: "flex", justifyContent: "space-evenly", width: this.state.fullScreen ? "100vw" : 200, height: this.state.fullScreen ? this.state.fullScreenHeightWithAddressBar : 113, position: "fixed", bottom: this.state.fullScreen ? 0 : 66, right: this.state.fullScreen ? 0 : 16, flexDirection: "column", transition: "width 500ms, height 300ms", transitionTimingFunction: "ease-out" }}>
                             <div style={{ height: "100%", backgroundPositionX: "center", backgroundPositionY: "bottom", backgroundSize: "cover", width: "100vw", backgroundImage: `URL('${this.props.topImage}')`, display: this.state.fullScreen ? "block" : "none", }}>
 
                             </div>
@@ -140,6 +147,7 @@ export default class InAppAdContainer extends Component {
                                     src={this.state.muted ? "https://content.lumen-research.com/cache_page_data/OguryMicrosoftAds/volume-off-indicator.png" : "https://content.lumen-research.com/cache_page_data/OguryMicrosoftAds/volume.png"} />
                             </div>
                             <video
+                                ref={this.video}
                                 onEnded={this.deleteVideo} 
                                 onTimeUpdate={this.updateVideoProgress} src={this.props.videoSrc} style={{ width: "100%", height: "auto" }} nocontrols autoPlay playsInline
                                 muted={this.state.muted} >
