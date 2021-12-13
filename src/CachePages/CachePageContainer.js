@@ -78,7 +78,7 @@ export default function CachePageContainer() {
              {showIframe === 0 ?  <FullheightIframe id="test" showIframe URL={cachePageA} /> : "" }
              {showIframe === 1 ?  <FullheightIframe id="clutter" showIframe URL={cachePageB} /> : "" }
             {loaded ?  < InAppAdContainer videoSrc = {videoSrc} topImage = {topImage} bottomImage = {bottomImage} adLogo = {adLogo} companyName = {companyName} /> : "" }
-            <button style={{zIndex: 3, position: "fixed", bottom: 20 }} onClick ={handleButtonClick}>Show Next Page</button>
+            {/* <button style={{zIndex: 3, position: "fixed", bottom: 20 }} onClick ={handleButtonClick}>Show Next Page</button> */}
         </div>
     )
 }

@@ -18,6 +18,7 @@ export default class InAppAdContainer extends Component {
             savedControlledPosition: { x: 0, y: 0 },
             screenHeightWithAddressBar: 0,
             fullScreenHeightWithAddressBar: 0,
+            showContinueButton: false,
 
         }
         this.draggingContainer = React.createRef();
@@ -36,6 +37,7 @@ export default class InAppAdContainer extends Component {
         else {
             this.setState({ savedControlledPosition: { x: dragger.state.x, y: dragger.state.y } });
             this.setState({ controlledPosition: { x: 0, y: 0 } });
+            this.setState({ showContinueButton: false });
         }
         this.setState({ "fullScreen": !this.state.fullScreen });
         if (!!this.video.current) {
@@ -59,6 +61,14 @@ export default class InAppAdContainer extends Component {
 
         if (Math.round(e.target.currentTime) >= 5) {
             this.setState({ "isClosable": true })
+        }
+        if (Math.round(e.target.currentTime) >= 8) {
+            if (this.state.fullScreen) {
+                this.setState({ showContinueButton: true })
+            }
+            else {
+                this.setState({ showContinueButton: false })
+            }
         }
         const timeRemaining = Math.round(e.target.duration) - Math.round(e.target.currentTime);
         this.setState({ "timeRemaining": parseInt(timeRemaining) })
@@ -88,7 +98,7 @@ export default class InAppAdContainer extends Component {
             <div style={{zIndex:2147483647, position: "relative"}} >
                 <Draggable onDrag={this.onControlledDrag} ref={this.draggingContainer} position={this.state.controlledPosition} on bounds="body" disabled={this.state.fullScreen} cancel=".noDrag" >
 
-                    {!this.state.deleted ? <div style={{ position: "fixed", bottom: this.state.fullScreen ? 0 : 8, right: this.state.fullScreen ? 0 : 16, zIndex: 4 }}>
+                    {!this.state.deleted ? <div style={{ position: "fixed", bottom: this.state.fullScreen ? 0 : 8, right: 0, zIndex: 4 }}>
                         <div id="ultimateContainer" style={{ display: "flex", justifyContent: "space-evenly", width: this.state.fullScreen ? "100vw" : 200, height: this.state.fullScreen ? this.state.fullScreenHeightWithAddressBar : 113, position: "fixed", bottom: this.state.fullScreen ? 0 : 66, right: this.state.fullScreen ? 0 : 16, flexDirection: "column", transition: "width 500ms, height 300ms", transitionTimingFunction: "ease-out" }}>
                             <div style={{ height: "100%", backgroundPositionX: "center", backgroundPositionY: "bottom", backgroundSize: "cover", width: "100vw", backgroundImage: `URL('${this.props.topImage}')`, display: this.state.fullScreen ? "block" : "none", }}>
 
@@ -132,8 +142,8 @@ export default class InAppAdContainer extends Component {
                                 <i onClick={this.switchVideo} style={{ color: "white", padding: "0px 2px", cursor: "pointer", fontSize: 18, }}
                                     className="fas fa-compress"></i>
                             </div>
-                            <div
-                                style={{ cursor: "pointer", display: this.state.fullScreen ? "block" : "none", position: "absolute", right: 10, bottom: 12, background: "rgb(0 0 0 / 50%)", borderRadius: 4, padding: 8, zIndex: 8, }}>
+                            <div onClick={this.deleteVideo}
+                                style={{ cursor: "pointer", display: this.state.showContinueButton ? "block" : "none", position: "absolute", right: 10, bottom: 12, background: "rgb(0 0 0 / 50%)", borderRadius: 4, padding: 8, zIndex: 8, }}>
                                 <p style={{ fontFamily: "'Roboto', sans-serif", color: "white", fontSize: 14, lineHeight: "14px", margin: 2 }}>Continue</p>
                             </div>
                             <div
