@@ -13,15 +13,18 @@ export default function CachePageContainer() {
     const [adLogo, setadLogo] = React.useState("https://content.lumen-research.com/cache_page_data/OguryMicrosoftAds/MircrosoftLogo.png")
     const [companyName, setcompanyName] = React.useState("Microsoft")
     const [loaded, setLoaded] = React.useState(false)
+    const [playVideo, setplayVideo] = React.useState(false)
 
     function handleButtonClick() {
         if (showIframe < 1) {
+            setplayVideo(false)
             setshowIframe(showIframe +1)
         }
     }
 
     document.addEventListener("LRIsReady", () => {
         setLoaded(true);
+        setplayVideo(true)
         window.LRRegisterCustomEndHandler(() => {
             handleButtonClick();
             window.postMessage(
@@ -77,7 +80,7 @@ export default function CachePageContainer() {
         <div>
              {showIframe === 0 ?  <FullheightIframe id="test" showIframe URL={cachePageA} /> : "" }
              {showIframe === 1 ?  <FullheightIframe id="clutter" showIframe URL={cachePageB} /> : "" }
-            {loaded ?  < InAppAdContainer videoSrc = {videoSrc} topImage = {topImage} bottomImage = {bottomImage} adLogo = {adLogo} companyName = {companyName} /> : "" }
+            {loaded ?  < InAppAdContainer playVideo = {playVideo} videoSrc = {videoSrc} topImage = {topImage} bottomImage = {bottomImage} adLogo = {adLogo} companyName = {companyName} /> : "" }
             {/* <button style={{zIndex: 3, position: "fixed", bottom: 20 }} onClick ={handleButtonClick}>Show Next Page</button> */}
         </div>
     )

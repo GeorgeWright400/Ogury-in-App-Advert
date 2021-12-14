@@ -26,8 +26,19 @@ export default class InAppAdContainer extends Component {
     }
     componentDidMount() {
         this.setState({ fullScreenHeightWithAddressBar: window.innerHeight })
+        if (this.props.playVideo) {
+            this.video.current.play()
+        }
     }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.playVideo !== this.props.playVideo) {
+            if (this.props.playVideo) {
+                this.video.current.play()
+            }
+        }
+      }
+    
 
     switchVideo = () => {
         const dragger = this.draggingContainer.current;
@@ -159,7 +170,7 @@ export default class InAppAdContainer extends Component {
                             <video
                                 ref={this.video}
                                 onEnded={this.deleteVideo} 
-                                onTimeUpdate={this.updateVideoProgress} src={this.props.videoSrc} style={{ width: "100%", height: "auto" }} nocontrols autoPlay playsInline
+                                onTimeUpdate={this.updateVideoProgress} src={this.props.videoSrc} style={{ width: "100%", height: "auto" }} nocontrols playsInline
                                 muted={this.state.muted} >
                             </video>
                             <div style={{ height: "100%", backgroundSize: "cover", backgroundPositionX: "center", backgroundPositionY: "top", width: "100vw", backgroundImage: `URL('${this.props.bottomImage}')`, display: this.state.fullScreen ? "block" : "none", }}>
