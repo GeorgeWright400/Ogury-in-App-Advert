@@ -26,7 +26,11 @@ export default function CachePageContainer() {
         setLoaded(true);
         setplayVideo(true)
         window.LRRegisterCustomEndHandler(() => {
+            let nextButton = document.getElementById('next-button');
+            let nextSpinner = document.getElementById('next-spinner');
             handleButtonClick();
+            nextButton.style.display = 'none';
+            nextSpinner.style.display = 'block';
             window.postMessage(
                 {
                   type: 'LS_EXT_NAVIGATE',
@@ -35,6 +39,10 @@ export default function CachePageContainer() {
                 window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : ''),
               );
             window.LRRegisterCustomEndHandler(window.LRhandleStepEnd)
+            setTimeout(() => {
+                nextButton.style.display = 'block';
+                nextSpinner.style.display = 'none';
+            }, 5000);
         })
     })
 
