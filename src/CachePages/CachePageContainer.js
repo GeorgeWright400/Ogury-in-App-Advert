@@ -42,7 +42,7 @@ export default function CachePageContainer() {
             setTimeout(() => {
                 nextButton.style.display = 'block';
                 nextSpinner.style.display = 'none';
-            }, 5000);
+            }, window.FROM_SERVER.nextButtonTime || 5000);
         })
     })
 
